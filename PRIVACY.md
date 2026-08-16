@@ -1,29 +1,29 @@
 # PagePeace Privacy Policy
 
-PagePeace performs content blocking locally in the browser. It does not sell personal information, create browsing profiles, inject advertising, or send browsing history to PagePeace contributors.
+Last updated: August 16, 2026
 
-## Data handled locally
+PagePeace and PagePeace Plus are content-blocking browser extensions. They inspect network requests and page content locally in your browser so they can block ads, trackers, pop-ups, and other unwanted elements.
 
-PagePeace stores filter-list settings, per-site protection choices, trusted-site entries, custom filters, interface preferences, and temporary-pause expiration times in browser-managed extension storage. Website addresses are processed locally so filtering rules can be applied.
+## Data collection
 
-## Network access
+PagePeace does not collect, sell, rent, or transmit personal information, browsing history, authentication information, financial information, health information, communications, location, or page content to the PagePeace developers or to advertising companies.
 
-PagePeace periodically downloads enabled filter-list updates from their published sources. Those hosts may receive ordinary request metadata such as IP address and user agent. PagePeace does not attach browsing history to filter-update requests.
+## Local browser data
 
-## Permissions
+Protection preferences, selected filter lists, per-site settings, and custom rules are stored locally using browser extension storage. This information is used only to provide the extension's filtering and customization features. If browser synchronization is enabled by the user, the browser vendor may synchronize supported settings under that vendor's own privacy terms.
 
-Access to website data is required to block network requests and hide unwanted page elements. Storage preserves settings. Alarms update filters and restore timed pauses. Scripting permissions apply filtering and user-requested page tools. PagePeace requests optional site access where the MV3 browser requires it for stronger protection.
+PagePeace reads website addresses, network requests, and page content only as needed to apply blocking rules and user-requested page tools. This processing occurs locally on the user's device.
 
-## Telemetry and accounts
+## Remote resources
 
-PagePeace includes no PagePeace-operated analytics, telemetry, advertising identifier, or account system. Browser vendors may independently collect extension-store or browser diagnostics under their own policies.
+PagePeace does not load or execute remote JavaScript or WebAssembly. Filter-list updates are rule data, not executable program code.
 
-## User control
+## Third parties
 
-Settings can be exported, reset, or removed by uninstalling the extension. Uninstalling removes browser-managed PagePeace storage according to the browser's behavior.
+PagePeace does not sell or transfer user data to third parties. The extension is distributed through browser stores operated by Google and Mozilla, whose store and update services are governed by their respective privacy policies.
 
-## Contact and changes
+## Open source and contact
 
-Before public distribution, the project maintainer must add a public support address and canonical policy URL here. Material policy changes should be documented with the release date.
+PagePeace is open source. Questions, privacy concerns, and support requests can be submitted at:
 
-Last updated: 2026-08-15
+https://github.com/NullGurll/pagepeace/issues
