@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="PagePeace logo">
+  <rect width="512" height="512" rx="112" fill="#123d43"/>
+  <path d="M256 72 412 132v120c0 112-60 196-156 252C160 448 100 364 100 252V132L256 72Z" fill="#72d4b5"/>
+  <path d="M256 172v152M180 248h152" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="36"/>
+</svg>

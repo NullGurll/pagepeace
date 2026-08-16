@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="PagePeace">
   <rect width="128" height="128" rx="28" fill="#123d43"/>
+  <rect x="4.5" y="4.5" width="119" height="119" rx="24" fill="none" stroke="#72d4b5" stroke-width="3"/>
   <path d="M64 18 103 33v30c0 28-15 49-39 63C40 112 25 91 25 63V33L64 18Z" fill="#72d4b5"/>
   <path d="M64 43v38M45 62h38" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="9"/>
 </svg>

@@ -124,7 +124,7 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "PagePeace Plus",
+  "short_name": "PagePeace+",
   "sidebar_action": {
     "default_title": "__MSG_statsPageName__",
     "default_panel": "logger-ui.html",

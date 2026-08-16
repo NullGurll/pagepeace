@@ -108,27 +108,29 @@ main {
 #easyPanel { display: none; padding: var(--popup-gap); text-align: center; }
 #easyProtectionState { color: #287d68; font-size: 1.15em; font-weight: 700; }
 #easyPanel > p { color: var(--ink-3); margin: var(--popup-gap-thin) 0 var(--popup-gap); }
-#advancedLevels { display: none; gap: var(--popup-gap-thin); padding: 0 var(--popup-gap) var(--popup-gap); }
+#advancedLevels { display: none; gap: 10px; padding: 0 var(--popup-gap) var(--popup-gap); }
 #advancedLevels button, #easyPause, #easyRepair, #easySettings {
     background: var(--surface-1);
     border: 1px solid var(--border-1);
     border-radius: 12px;
     color: var(--ink-1);
     cursor: pointer;
-    padding: var(--popup-gap-thin);
+    padding: 11px 12px;
 }
-#advancedLevels button { text-align: start; }
-#advancedLevels strong, #advancedLevels small { display: block; }
-#advancedLevels small { color: var(--ink-3); margin-top: 2px; }
+#advancedLevels button { align-items: stretch; flex-direction: column; text-align: start; }
+#advancedLevels strong, #advancedLevels small { display: block; letter-spacing: normal; }
+#advancedLevels strong { line-height: 1.35; }
+#advancedLevels small { color: var(--ink-3); line-height: 1.5; margin-top: 4px; }
 #advancedLevels button.active { background: var(--pagepeace-deep); border-color: var(--pagepeace-deep); color: white; }
 #advancedLevels button.active small { color: inherit; opacity: 0.8; }
 #easyPause, #easySettings { margin-top: var(--popup-gap-thin); width: 100%; }
 #easyRepair { margin-top: var(--popup-gap-thin); width: 100%; }
 #pauseDurationLabel { color: var(--ink-3); display: grid; gap: 4px; font-size: 90%; margin-top: var(--popup-gap); text-align: start; }
 #pauseDuration { background: var(--surface-1); border: 1px solid var(--border-1); border-radius: 10px; color: var(--ink-1); padding: 8px; width: 100%; }
-#expertHeading { display: none; padding: var(--popup-gap); text-align: center; }
+#expertHeading { display: none; padding: var(--popup-gap) var(--popup-gap) 14px; text-align: center; }
 #expertHeading strong, #expertHeading small { display: block; }
-#expertHeading small { color: var(--ink-3); margin-top: 2px; }
+#expertHeading strong { line-height: 1.35; }
+#expertHeading small { color: var(--ink-3); line-height: 1.5; margin-top: 4px; }
 :root.easyExperience #easyPanel { display: block; }
 :root.easyExperience .localTools,
 :root.easyExperience .globalTools { display: none; }
@@ -298,7 +300,8 @@ body.needReload #refresh {
 .toolMenu > .tool {
     cursor: pointer;
     display: flex;
-    padding: 0.5em 0.5em 0.5em 0;
+    line-height: 1.45;
+    padding: 0.65em 0.6em 0.65em 0;
     unicode-bidi: embed;
 }
 .toolMenu > .tool:hover {

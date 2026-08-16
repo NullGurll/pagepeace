@@ -107,7 +107,7 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "PagePeace Plus",
+  "short_name": "PagePeace+",
   "storage": {
     "managed_schema": "managed_storage.json"
   },
