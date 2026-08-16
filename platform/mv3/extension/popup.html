@@ -24,19 +24,22 @@
 
 <main>
     <div id="experienceSwitcher" aria-label="Interface mode">
-        <button type="button" data-experience="easy" aria-pressed="true">Easy</button>
-        <button type="button" data-experience="expert" aria-pressed="false">Expert</button>
+        <button type="button" data-experience="easy" aria-pressed="true">Simple</button>
+        <button type="button" data-experience="expert" aria-pressed="false">Advanced</button>
     </div>
     <div id="hostname"><span></span>&shy;<span></span></div>
     <!-- -------- -->
     <section id="easyPanel">
         <div id="easyProtectionState">Protection is on</div>
-        <p>Choose how quietly PagePeace should protect this website.</p>
-        <div id="easyLevels">
-            <button type="button" data-easy-level="1"><strong>Standard</strong><small>Reliable blocking with the fewest site issues</small></button>
-            <button type="button" data-easy-level="2"><strong>Strong</strong><small>Recommended balance of privacy and compatibility</small></button>
-            <button type="button" data-easy-level="3"><strong>Maximum</strong><small>Strongest protection; some sites may need permission</small></button>
+        <p>Move the slider to choose how quietly PagePeace protects this website.</p>
+        <div class="filteringModeSlider">
+            <div class="filteringModeButton"><div></div></div>
+            <span data-level="0" aria-label="filteringMode0Name"></span>
+            <span data-level="1" aria-label="filteringMode1Name"></span>
+            <span data-level="2" aria-label="filteringMode2Name"></span>
+            <span data-level="3" aria-label="filteringMode3Name"></span>
         </div>
+        <div id="filteringModeText"><label data-i18n="popupFilteringModeLabel">_</label><br><span>_</span><span></span></div>
         <label id="pauseDurationLabel">Pause length
             <select id="pauseDuration"><option value="10">10 minutes</option><option value="60">1 hour</option><option value="0">Until I turn it back on</option></select>
         </label>
@@ -44,16 +47,12 @@
         <button type="button" id="easyRepair">Site broken? Relax one level</button>
         <button type="button" id="easySettings">All protection settings</button>
     </section>
-    <div id="expertHeading"><strong>Advanced site controls</strong><small>Set an exact filtering level and use page tools.</small></div>
-    <div class="filteringModeSlider">
-        <div class="filteringModeButton"><div></div></div>
-        <span data-level="0" aria-label="filteringMode0Name"></span>
-        <span data-level="1" aria-label="filteringMode1Name"></span>
-        <span data-level="2" aria-label="filteringMode2Name"></span>
-        <span data-level="3" aria-label="filteringMode3Name"></span>
+    <div id="expertHeading"><strong>Advanced site controls</strong><small>Choose a detailed preset and use page tools.</small></div>
+    <div id="advancedLevels">
+        <button type="button" data-easy-level="1"><strong>Standard</strong><small>Reliable blocking with the fewest site issues</small></button>
+        <button type="button" data-easy-level="2"><strong>Strong</strong><small>Recommended balance of privacy and compatibility</small></button>
+        <button type="button" data-easy-level="3"><strong>Maximum</strong><small>Strongest protection; some sites may need permission</small></button>
     </div>
-    <!-- -------- -->
-    <div id="filteringModeText"><label data-i18n="popupFilteringModeLabel">_</label><br><span>_</span><span></span></div>
     <!-- -------- -->
     <div class="toolMenu localTools needHTTP">
         <label data-i18n="popupLocalToolsLabel"></label>

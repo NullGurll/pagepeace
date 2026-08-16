@@ -55,9 +55,9 @@ body.peaceMomentActive .peaceMark { animation: peace-mark .8s cubic-bezier(.2,.9
     :root.easyExperience #experienceSwitcher [data-experience="easy"],
     :root.expertExperience #experienceSwitcher [data-experience="expert"] { background: #72d4b5; color: #092226; }
     #easyProtectionState { color: #72d4b5; }
-    #easyPanel > p, #easyLevels small, #expertHeading small { color: #9dbbb7; }
-    #easyLevels button, #easyPause, #easyRepair, #easySettings, #pauseDuration { background: #173236; border-color: #315255; color: #e6f5ef; }
-    #easyLevels button.active { background: #72d4b5; border-color: #72d4b5; color: #092226; }
+    #easyPanel > p, #advancedLevels small, #expertHeading small { color: #9dbbb7; }
+    #advancedLevels button, #easyPause, #easyRepair, #easySettings, #pauseDuration { background: #173236; border-color: #315255; color: #e6f5ef; }
+    #advancedLevels button.active { background: #72d4b5; border-color: #72d4b5; color: #092226; }
 }
 
 :root body,
@@ -108,8 +108,8 @@ main {
 #easyPanel { display: none; padding: var(--popup-gap); text-align: center; }
 #easyProtectionState { color: #287d68; font-size: 1.15em; font-weight: 700; }
 #easyPanel > p { color: var(--ink-3); margin: var(--popup-gap-thin) 0 var(--popup-gap); }
-#easyLevels { display: grid; gap: var(--popup-gap-thin); }
-#easyLevels button, #easyPause, #easyRepair, #easySettings {
+#advancedLevels { display: none; gap: var(--popup-gap-thin); padding: 0 var(--popup-gap) var(--popup-gap); }
+#advancedLevels button, #easyPause, #easyRepair, #easySettings {
     background: var(--surface-1);
     border: 1px solid var(--border-1);
     border-radius: 12px;
@@ -117,11 +117,11 @@ main {
     cursor: pointer;
     padding: var(--popup-gap-thin);
 }
-#easyLevels button { text-align: start; }
-#easyLevels strong, #easyLevels small { display: block; }
-#easyLevels small { color: var(--ink-3); margin-top: 2px; }
-#easyLevels button.active { background: var(--pagepeace-deep); border-color: var(--pagepeace-deep); color: white; }
-#easyLevels button.active small { color: inherit; opacity: 0.8; }
+#advancedLevels button { text-align: start; }
+#advancedLevels strong, #advancedLevels small { display: block; }
+#advancedLevels small { color: var(--ink-3); margin-top: 2px; }
+#advancedLevels button.active { background: var(--pagepeace-deep); border-color: var(--pagepeace-deep); color: white; }
+#advancedLevels button.active small { color: inherit; opacity: 0.8; }
 #easyPause, #easySettings { margin-top: var(--popup-gap-thin); width: 100%; }
 #easyRepair { margin-top: var(--popup-gap-thin); width: 100%; }
 #pauseDurationLabel { color: var(--ink-3); display: grid; gap: 4px; font-size: 90%; margin-top: var(--popup-gap); text-align: start; }
@@ -130,11 +130,10 @@ main {
 #expertHeading strong, #expertHeading small { display: block; }
 #expertHeading small { color: var(--ink-3); margin-top: 2px; }
 :root.easyExperience #easyPanel { display: block; }
-:root.easyExperience .filteringModeSlider,
-:root.easyExperience #filteringModeText,
 :root.easyExperience .localTools,
 :root.easyExperience .globalTools { display: none; }
 :root.expertExperience #expertHeading { display: block; }
+:root.expertExperience #advancedLevels { display: grid; }
 body.busy main {
     pointer-events: none;
 }
@@ -181,13 +180,13 @@ main { background: var(--pagepeace-cream); }
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--pagepeace-mint) 18%, transparent);
     color: var(--pagepeace-deep);
 }
-#easyLevels button.active {
+#advancedLevels button.active {
     background: transparent;
     border: 2px solid var(--pagepeace-mint);
     box-shadow: 0 0 0 3px color-mix(in srgb, var(--pagepeace-mint) 16%, transparent);
     color: var(--pagepeace-deep);
 }
-#easyLevels button.active small { color: var(--ink-3); opacity: 1; }
+#advancedLevels button.active small { color: var(--ink-3); opacity: 1; }
 button, select, .tool, [tabindex] { border-radius: 12px; }
 button:focus-visible, select:focus-visible, .tool:focus-visible, [tabindex]:focus-visible {
     outline: 2px solid var(--pagepeace-mint);
@@ -202,8 +201,8 @@ button:active, .tool:active, [role="button"]:active {
     #experienceSwitcher button { color: #b6cfcb; }
     :root.easyExperience #experienceSwitcher [data-experience="easy"],
     :root.expertExperience #experienceSwitcher [data-experience="expert"],
-    #easyLevels button.active { background: transparent; border-color: #72d4b5; color: #e6f5ef; }
-    #easyLevels button.active small { color: #b6cfcb; }
+    #advancedLevels button.active { background: transparent; border-color: #72d4b5; color: #e6f5ef; }
+    #advancedLevels button.active small { color: #b6cfcb; }
     #hostname { background: #102b2e; color: #e6f5ef; }
 }
 
