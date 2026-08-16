@@ -98,3 +98,31 @@ body.busy[data-pane] > section[data-pane="busy"] {
 :root.mobile nav .logo {
     display: none;
     }
+
+/* PagePeace rounded, outline-led interaction language. */
+header, nav { border-radius: 0 0 16px 16px; }
+body > section, body [data-pane-related] { border-radius: 16px; }
+button, input, select, textarea, .filteringModeCard, [tabindex] { border-radius: 12px; }
+nav > .tabButton { border: 2px solid transparent; }
+body[data-pane="settings"] #dashboard-nav .tabButton[data-pane="settings"],
+body[data-pane="rulesets"] #dashboard-nav .tabButton[data-pane="rulesets"],
+body[data-pane="filters"] #dashboard-nav .tabButton[data-pane="filters"],
+body[data-pane="develop"] #dashboard-nav .tabButton[data-pane="develop"],
+body[data-pane="about"] #dashboard-nav .tabButton[data-pane="about"] {
+    background: transparent;
+    border-color: #55b89a;
+    box-shadow: 0 0 0 3px rgb(85 184 154 / 16%);
+}
+button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+    outline: 2px solid #55b89a;
+    outline-offset: 2px;
+}
+button:active, [role="button"]:active { box-shadow: 0 0 0 3px rgb(85 184 154 / 22%); }
+@media (prefers-color-scheme: dark) {
+    header, nav { background: #102f32; color: #e6f5ef; }
+    body[data-pane="settings"] #dashboard-nav .tabButton[data-pane="settings"],
+    body[data-pane="rulesets"] #dashboard-nav .tabButton[data-pane="rulesets"],
+    body[data-pane="filters"] #dashboard-nav .tabButton[data-pane="filters"],
+    body[data-pane="develop"] #dashboard-nav .tabButton[data-pane="develop"],
+    body[data-pane="about"] #dashboard-nav .tabButton[data-pane="about"] { background: transparent; border-color: #72d4b5; color: #72d4b5; }
+}
