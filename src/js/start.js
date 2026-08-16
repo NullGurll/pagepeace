@@ -539,6 +539,20 @@ while ( µb.alarmQueue.length !== 0 ) {
     case 'saveLocalSettings':
         µb.saveLocalSettings();
         break;
+    default:
+        if ( what.startsWith('pagePeacePause:') ) {
+            const hostname = what.slice(15);
+            µb.toggleNetFilteringSwitch(`https://${hostname}/`, '', true);
+            const result = await vAPI.storage.get('pagePeaceTimedPauses');
+            const pauses = result.pagePeaceTimedPauses || {};
+            delete pauses[hostname];
+            await vAPI.storage.set({ pagePeaceTimedPauses: pauses });
+            const tabs = await vAPI.tabs.query({
+                url: [ `*://${hostname}/*`, `*://*.${hostname}/*` ],
+            });
+            for ( const tab of tabs ) { µb.updateToolbarIcon(tab.id, 0b111); }
+        }
+        break;
     }
 }
 

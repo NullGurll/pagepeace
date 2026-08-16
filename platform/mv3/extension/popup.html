@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="uBO-popup-panel" class="desktop">
+<html id="uBO-popup-panel" class="desktop easyExperience">
 
 <head>
 <meta charset="utf-8">
@@ -14,10 +14,37 @@
 </head>
 
 <body class="loading busy">
+<div id="peaceMoment" role="status" aria-live="polite" aria-label="PagePeace protection is on">
+    <div class="peaceMark" aria-hidden="true">
+        <svg viewBox="0 0 96 112"><path d="M48 5 84 19v28c0 26-14 46-36 59C26 93 12 73 12 47V19L48 5Z"/><path class="peacePlus" d="M48 30v34M31 47h34"/></svg>
+    </div>
+    <strong>PagePeace is on</strong>
+    <span>This page can breathe easier.</span>
+</div>
 
 <main>
+    <div id="experienceSwitcher" aria-label="Interface mode">
+        <button type="button" data-experience="easy" aria-pressed="true">Easy</button>
+        <button type="button" data-experience="expert" aria-pressed="false">Expert</button>
+    </div>
     <div id="hostname"><span></span>&shy;<span></span></div>
     <!-- -------- -->
+    <section id="easyPanel">
+        <div id="easyProtectionState">Protection is on</div>
+        <p>Choose how quietly PagePeace should protect this website.</p>
+        <div id="easyLevels">
+            <button type="button" data-easy-level="1"><strong>Standard</strong><small>Reliable blocking with the fewest site issues</small></button>
+            <button type="button" data-easy-level="2"><strong>Strong</strong><small>Recommended balance of privacy and compatibility</small></button>
+            <button type="button" data-easy-level="3"><strong>Maximum</strong><small>Strongest protection; some sites may need permission</small></button>
+        </div>
+        <label id="pauseDurationLabel">Pause length
+            <select id="pauseDuration"><option value="10">10 minutes</option><option value="60">1 hour</option><option value="0">Until I turn it back on</option></select>
+        </label>
+        <button type="button" id="easyPause">Pause on this site</button>
+        <button type="button" id="easyRepair">Site broken? Relax one level</button>
+        <button type="button" id="easySettings">All protection settings</button>
+    </section>
+    <div id="expertHeading"><strong>Advanced site controls</strong><small>Set an exact filtering level and use page tools.</small></div>
     <div class="filteringModeSlider">
         <div class="filteringModeButton"><div></div></div>
         <span data-level="0" aria-label="filteringMode0Name"></span>

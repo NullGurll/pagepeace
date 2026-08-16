@@ -2,6 +2,45 @@ body {
     margin-bottom: 6rem;
     }
 
+.customizationStudio {
+    background: linear-gradient(135deg, var(--surface-1), var(--surface-0));
+    border: 1px solid var(--border-1);
+    border-radius: 8px;
+    margin: 0 0 var(--default-gap-large);
+    padding: var(--default-gap-large);
+    }
+.customizationTitle {
+    font-size: var(--font-size-larger);
+    font-weight: 700;
+    }
+.customizationTitle > span {
+    background: var(--accent-surface-1);
+    border-radius: 999px;
+    color: var(--accent-ink-1);
+    font-size: var(--font-size-smaller);
+    margin-inline-start: 0.5em;
+    padding: 0.2em 0.6em;
+    }
+.customizationRow {
+    align-items: center;
+    border-top: 1px solid var(--border-1);
+    display: flex;
+    gap: var(--default-gap-large);
+    justify-content: space-between;
+    padding: var(--default-gap) 0;
+    }
+.customizationRow > span { font-weight: 600; }
+.presetButtons { display: flex; flex-wrap: wrap; gap: var(--default-gap-small); }
+.presetButtons button.active {
+    background-color: var(--accent-surface-1);
+    color: var(--accent-ink-1);
+    }
+#customizationStatus {
+    color: var(--accent-surface-1);
+    min-height: 1.5em;
+    padding-top: var(--default-gap-small);
+    }
+
 .synopsis {
     color: var(--ink-0);
     font-size: var(--font-size-smaller);
@@ -66,6 +105,7 @@ body.advancedUser [href="advanced-settings.html"] {
 :root.mobile #localData {
     max-width: 100vw;
     }
+:root.mobile .customizationRow { align-items: flex-start; flex-direction: column; }
 :root.mobile #localData > div:last-of-type {
     align-items: stretch;
     }

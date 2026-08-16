@@ -1,14 +1,14 @@
 {
   "extName": {
-    "message": "uBlock Origin",
+    "message": "PagePeace",
     "description": "extension name."
   },
   "extShortDesc": {
-    "message": "Finally, an efficient blocker. Easy on CPU and memory.",
+    "message": "Browse in peace. Blocks ads, trackers, and unwanted distractions with friendly controls.",
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
-    "message": "uBlock₀ — Dashboard",
+    "message": "PagePeace — Dashboard",
     "description": "English: uBlock₀ — Dashboard"
   },
   "dashboardUnsavedWarning": {

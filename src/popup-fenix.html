@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html id="uBO-popup-panel">
+<html id="uBO-popup-panel" class="easyMode">
 
 <head>
 <meta charset="utf-8">
@@ -14,10 +14,25 @@
 </head>
 
 <body class="loading" data-more="abcd">
+<div id="peaceMoment" role="status" aria-live="polite" aria-label="PagePeace protection is on">
+    <div class="peaceMark" aria-hidden="true">
+        <svg viewBox="0 0 96 112"><path d="M48 5 84 19v28c0 26-14 46-36 59C26 93 12 73 12 47V19L48 5Z"/><path class="peacePlus" d="M48 30v34M31 47h34"/></svg>
+    </div>
+    <strong>PagePeace is on</strong>
+    <span>This page can breathe easier.</span>
+</div>
 <div id="panes">
     <div id="main">
         <div id="sticky">
+            <div id="experienceSwitcher" aria-label="Interface mode">
+                <button type="button" data-experience="easy">Easy</button>
+                <button type="button" data-experience="expert">Expert</button>
+            </div>
             <div id="hostname"><span></span>&shy;<span>&nbsp;</span></div>
+            <div id="easySummary">
+                <span id="easyStatus">Protection is active</span>
+                <small id="easyExplanation">PagePeace is quietly filtering this site.</small>
+            </div>
             <div id="stickyTools">
                 <div class="rulesetTools">
                     <span id="saveRules" class="fa-icon" data-i18n-title="popupTipSaveRules">lock</span>
@@ -42,6 +57,14 @@
                     <span id="refresh" class="fa-icon">refresh</span>
                 </div>
             </div>
+        </div>
+        <div id="easyActions">
+            <button type="button" id="easySiteToggle">Pause on this site</button>
+            <label id="pauseDurationLabel">Pause length
+                <select id="pauseDuration"><option value="10">10 minutes</option><option value="60">1 hour</option><option value="0">Until I turn it back on</option></select>
+            </label>
+            <button type="button" id="easyFixSite">Site broken? Fix it</button>
+            <a href="dashboard.html" target="uBODashboard">Protection settings</a>
         </div>
         <div id="extraTools" class="toolRibbon" data-more="d">
             <span id="no-popups" class="hnSwitch tool enabled" role="button" aria-label tabindex="0" title><span class="fa-icon fa-icon-badged">ph-popups<svg class="nope" viewBox="0 0 20 20"><path d="M1,1 19,19M1,19 19,1" /></svg></span><span class="caption" data-i18n="popupNoPopups_v2"></span></span>

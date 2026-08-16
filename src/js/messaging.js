@@ -622,6 +622,23 @@ const onMessage = function(request, sender, callback) {
         }
         break;
     }
+    case 'scheduleTimedPause': {
+        const pageStore = µb.pageStoreFromTabId(request.tabId);
+        if ( pageStore ) {
+            pageStore.toggleNetFilteringSwitch(request.url, '', false);
+            µb.updateToolbarIcon(request.tabId, 0b111);
+            vAPI.storage.get('pagePeaceTimedPauses').then(result => {
+                const pauses = result.pagePeaceTimedPauses || {};
+                pauses[request.hostname] = Date.now() + request.minutes * 60000;
+                vAPI.alarms.create(`pagePeacePause:${request.hostname}`, {
+                    when: pauses[request.hostname],
+                });
+                return vAPI.storage.set({ pagePeaceTimedPauses: pauses });
+            }).then(( ) => { callback(); });
+            return;
+        }
+        break;
+    }
     default:
         return vAPI.messaging.UNHANDLED;
     }

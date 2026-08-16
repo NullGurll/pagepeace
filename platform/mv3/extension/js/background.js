@@ -500,6 +500,20 @@ async function onMessage(request, sender) {
         return afterLevel;
     }
 
+    case 'scheduleTimedPause': {
+        const key = `pagePeacePause:${request.hostname}`;
+        const pauses = await localRead('pagePeaceTimedPauses') || {};
+        pauses[request.hostname] = {
+            level: request.beforeLevel,
+            expires: Date.now() + request.minutes * 60000,
+        };
+        await localWrite('pagePeaceTimedPauses', pauses);
+        await setFilteringMode(request.hostname, 0);
+        await Promise.all([ registerContentScripts(), registerUserScripts() ]);
+        browser.alarms.create(key, { when: pauses[request.hostname].expires });
+        return 0;
+    }
+
     case 'setPendingFilteringMode':
         pendingPermissionRequest = request;
         return;
@@ -897,6 +911,19 @@ browser.commands.onCommand.addListener((...args) => {
 });
 
 browser.alarms.onAlarm.addListener(alarm => {
+    if ( alarm.name.startsWith('pagePeacePause:') ) {
+        isFullyInitialized.then(async ( ) => {
+            const hostname = alarm.name.slice(15);
+            const pauses = await localRead('pagePeaceTimedPauses') || {};
+            const details = pauses[hostname];
+            if ( details === undefined ) { return; }
+            await setFilteringMode(hostname, details.level || MODE_OPTIMAL);
+            delete pauses[hostname];
+            await localWrite('pagePeaceTimedPauses', pauses);
+            await Promise.all([ registerContentScripts(), registerUserScripts() ]);
+        });
+        return;
+    }
     if ( alarm.name !== 'deferredJobs' ) { return; }
     isFullyInitialized.then(( ) => {
         if ( process.wakeupRun === false && process.firstAlarm !== true ) {

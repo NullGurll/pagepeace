@@ -1,5 +1,5 @@
 {
-  "author": "Raymond Hill & contributors",
+  "author": "Raymond Hill, contributors, and PagePeace contributors",
   "background": {
     "page": "background.html"
   },
@@ -9,7 +9,7 @@
       "32": "img/icon_32.png",
       "64": "img/icon_64.png"
     },
-    "default_title": "uBlock Origin",
+    "default_title": "PagePeace",
     "default_popup": "popup-fenix.html"
   },
   "commands": {
@@ -90,7 +90,7 @@
   "incognito": "split",
   "manifest_version": 2,
   "minimum_chrome_version": "93.0",
-  "name": "uBlock Origin",
+  "name": "PagePeace",
   "options_ui": {
     "page": "dashboard.html",
     "open_in_tab": true
@@ -107,7 +107,7 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "uBlock₀",
+  "short_name": "PagePeace",
   "storage": {
     "managed_schema": "managed_storage.json"
   },

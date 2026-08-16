@@ -30,6 +30,34 @@ const popupPanelData = {};
 const  currentTab = {};
 const tabURL = new URL(runtime.getURL('/'));
 
+function setExperience(mode) {
+    const value = mode === 'expert' ? 'expert' : 'easy';
+    dom.cl.toggle(dom.html, 'easyExperience', value === 'easy');
+    dom.cl.toggle(dom.html, 'expertExperience', value === 'expert');
+    document.querySelectorAll('[data-experience]').forEach(button => {
+        button.setAttribute('aria-pressed', `${button.dataset.experience === value}`);
+    });
+    localStorage.setItem('pagePeaceMV3Experience', value);
+}
+
+function updateEasyState(level) {
+    dom.text('#easyProtectionState', level === 0 ? 'Protection is paused' : 'Protection is on');
+    dom.text('#easyPause', level === 0 ? 'Turn protection back on' : 'Pause on this site');
+    document.querySelectorAll('[data-easy-level]').forEach(button => {
+        dom.cl.toggle(button, 'active', parseInt(button.dataset.easyLevel, 10) === level);
+    });
+}
+
+setExperience(localStorage.getItem('pagePeaceMV3Experience'));
+
+function showPeaceMoment() {
+    if ( self.matchMedia('(prefers-reduced-motion: reduce)').matches ) { return; }
+    dom.cl.remove(dom.body, 'peaceMomentActive');
+    void dom.body.offsetWidth;
+    dom.cl.add(dom.body, 'peaceMomentActive');
+    self.setTimeout(( ) => dom.cl.remove(dom.body, 'peaceMomentActive'), 1800);
+}
+
 /******************************************************************************/
 
 function renderAdminRules() {
@@ -45,6 +73,7 @@ const BLOCKING_MODE_MAX = 3;
 async function setFilteringMode(level, commit = false) {
     const modeSlider = qs$('.filteringModeSlider');
     modeSlider.dataset.level = level;
+    updateEasyState(level);
     if ( qs$('.filteringModeSlider.moving') === null ) {
         dom.text(
             '#filteringModeText > span:nth-of-type(1)',
@@ -252,6 +281,43 @@ dom.on('#gotoDashboard', 'click', ev => {
     runtime.openOptionsPage();
 });
 
+document.querySelectorAll('[data-experience]').forEach(button => {
+    dom.on(button, 'click', ( ) => { setExperience(button.dataset.experience); });
+});
+document.querySelectorAll('[data-easy-level]').forEach(button => {
+    dom.on(button, 'click', ( ) => {
+        const slider = qs$('.filteringModeSlider');
+        slider.dataset.levelBefore = slider.dataset.level;
+        setFilteringMode(parseInt(button.dataset.easyLevel, 10), true);
+    });
+});
+dom.on('#easyPause', 'click', ( ) => {
+    const slider = qs$('.filteringModeSlider');
+    slider.dataset.levelBefore = slider.dataset.level;
+    const current = parseInt(slider.dataset.level, 10);
+    const next = current === 0 ? 2 : 0;
+    if ( current !== 0 ) {
+        const minutes = parseInt(qs$('#pauseDuration').value, 10);
+        if ( minutes > 0 ) {
+            sendMessage({
+                what: 'scheduleTimedPause', hostname: tabURL.hostname,
+                beforeLevel: current, minutes,
+            });
+            setFilteringMode(0);
+            return;
+        }
+    }
+    setFilteringMode(next, true);
+    if ( next !== 0 ) { showPeaceMoment(); }
+});
+dom.on('#easyRepair', 'click', ( ) => {
+    const slider = qs$('.filteringModeSlider');
+    slider.dataset.levelBefore = slider.dataset.level;
+    const current = parseInt(slider.dataset.level, 10);
+    setFilteringMode(Math.max(0, current - 1), true);
+});
+dom.on('#easySettings', 'click', ( ) => { runtime.openOptionsPage(); });
+
 /******************************************************************************/
 
 dom.on('#gotoZapper', 'click', ( ) => {
@@ -354,10 +420,13 @@ async function tryInit() {
         setTimeout(tryInit, 100);
     } finally {
         dom.cl.remove(dom.body, 'loading', 'busy');
+        if ( popupPanelData.level !== 0 && localStorage.getItem('pagePeaceWelcomeSeen') !== '1' ) {
+            localStorage.setItem('pagePeaceWelcomeSeen', '1');
+            showPeaceMoment();
+        }
     }
 }
 
 tryInit();
 
 /******************************************************************************/
-

@@ -11,10 +11,16 @@
 
 <h1 align="center">
 <sub>
-<img src="https://github.com/gorhill/uBlock/blob/master/src/img/ublock.svg" height="38" width="38">
+<img src="src/img/pagepeace.svg" height="38" width="38">
 </sub>
-uBlock Origin (uBO)
+PagePeace
 </h1>
+
+<p align="center"><strong>Browse in peace.</strong></p>
+
+> **PagePeace fork:** This checkout is a modified GPLv3 build of uBlock Origin. It retains uBO's filtering engine and adds friendly Easy and Expert experiences plus a Customization Studio. It is not an official uBlock Origin release and is not endorsed by the upstream project.
+
+See [privacy](PRIVACY.md), [acknowledgements](ACKNOWLEDGEMENTS.md), [store listing](STORE_LISTING.md), and the [release checklist](RELEASE_CHECKLIST.md).
 
 | Browser   | Install from ... | Status |
 | :-------: | ---------------- | ------ |

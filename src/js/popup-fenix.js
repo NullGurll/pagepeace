@@ -58,6 +58,20 @@ const allHostnameRows = [];
 let cachedPopupHash = '';
 let forceReloadFlag = 0;
 
+const setExperience = function(mode) {
+    const normalized = mode === 'expert' ? 'expert' : 'easy';
+    dom.cl.toggle(dom.root, 'easyMode', normalized === 'easy');
+    dom.cl.toggle(dom.root, 'expertMode', normalized === 'expert');
+    qsa$('[data-experience]').forEach(button => {
+        dom.attr(button, 'aria-pressed', button.dataset.experience === normalized ? 'true' : 'false');
+    });
+    vAPI.localStorage.setItem('pagePeaceExperience', normalized);
+};
+
+vAPI.localStorage.getItemAsync('pagePeaceExperience').then(value => {
+    setExperience(value);
+});
+
 // https://github.com/gorhill/uBlock/issues/2550
 // Solution inspired from
 // - https://bugs.chromium.org/p/chromium/issues/detail?id=683314
@@ -597,6 +611,11 @@ const renderPopup = function() {
     dom.cl.toggle(dom.body, 'advancedUser', popupData.advancedUserEnabled === true);
     dom.cl.toggle(dom.body, 'off', popupData.pageURL === '' || isFiltering !== true);
     dom.cl.toggle(dom.body, 'needSave', popupData.matrixIsDirty === true);
+    dom.text('#easyStatus', isFiltering ? 'Protection is active' : 'Protection is paused');
+    dom.text('#easyExplanation', isFiltering
+        ? 'PagePeace is quietly filtering this site.'
+        : 'This site is currently allowed to load without filtering.');
+    dom.text('#easySiteToggle', isFiltering ? 'Pause on this site' : 'Protect this site');
 
     // The hostname information below the power switch
     {
@@ -870,6 +889,7 @@ const renderPopupLazy = (( ) => {
 
 const toggleNetFilteringSwitch = function(ev) {
     if ( !popupData || !popupData.pageURL ) { return; }
+    const protectionWasOff = dom.cl.has(dom.body, 'off');
     messaging.send('popupPanel', {
         what: 'toggleNetFiltering',
         url: popupData.pageURL,
@@ -878,7 +898,24 @@ const toggleNetFilteringSwitch = function(ev) {
         tabId: popupData.tabId,
     });
     renderTooltips('#switch');
+    if ( protectionWasOff ) { showPeaceMoment(); }
     hashFromPopupData();
+};
+
+const showPeaceMoment = function() {
+    if ( self.matchMedia('(prefers-reduced-motion: reduce)').matches ) { return; }
+    dom.cl.remove(dom.body, 'peaceMomentActive');
+    void dom.body.offsetWidth;
+    dom.cl.add(dom.body, 'peaceMomentActive');
+    self.setTimeout(( ) => dom.cl.remove(dom.body, 'peaceMomentActive'), 1800);
+};
+
+const showFirstPeaceMoment = function() {
+    if ( dom.cl.has(dom.body, 'off') ) { return; }
+    const key = 'pagePeaceWelcomeSeen';
+    if ( vAPI.localStorage.getItem(key) === '1' ) { return; }
+    vAPI.localStorage.setItem(key, '1');
+    showPeaceMoment();
 };
 
 /******************************************************************************/
@@ -1519,6 +1556,7 @@ const getPopupData = async function(tabId, first = false) {
         }
         await nextFrames(1);
         dom.cl.remove(dom.body, 'loading');
+        showFirstPeaceMoment();
     };
 
     getPopupData(tabId, true).then(( ) => {
@@ -1533,6 +1571,37 @@ const getPopupData = async function(tabId, first = false) {
 /******************************************************************************/
 
 dom.on('#switch', 'click', toggleNetFilteringSwitch);
+qsa$('[data-experience]').forEach(button => {
+    dom.on(button, 'click', ( ) => { setExperience(button.dataset.experience); });
+});
+dom.on('#easySiteToggle', 'click', async ev => {
+    const minutes = parseInt(qs$('#pauseDuration').value, 10);
+    if ( popupData.netFilteringSwitch && minutes > 0 ) {
+        await messaging.send('popupPanel', {
+            what: 'scheduleTimedPause', url: popupData.pageURL,
+            hostname: popupData.pageHostname, minutes, tabId: popupData.tabId,
+        });
+        popupData.netFilteringSwitch = false;
+        renderPopup();
+        return;
+    }
+    toggleNetFilteringSwitch(ev);
+});
+dom.on('#easyFixSite', 'click', async ( ) => {
+    if ( popupData.netFilteringSwitch && popupData.noCosmeticFiltering !== true ) {
+        await messaging.send('popupPanel', {
+            what: 'toggleHostnameSwitch', name: 'no-cosmetic-filtering',
+            hostname: popupData.pageHostname, state: true,
+            tabId: popupData.tabId, persist: false,
+        });
+    } else if ( popupData.netFilteringSwitch ) {
+        await messaging.send('popupPanel', {
+            what: 'toggleNetFiltering', url: popupData.pageURL, scope: '',
+            state: false, tabId: popupData.tabId,
+        });
+    }
+    reloadTab();
+});
 dom.on('#gotoZap', 'click', gotoZap);
 dom.on('#gotoPick', 'click', gotoPick);
 dom.on('#gotoReport', 'click', gotoReport);

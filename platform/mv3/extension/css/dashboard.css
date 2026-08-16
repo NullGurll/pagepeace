@@ -11,18 +11,21 @@ nav {
     flex-shrink: 0;
     flex-wrap: wrap;
     overflow-x: hidden;
-    padding: 0;
+    padding: 0.45em 0.7em;
     }
+nav .logo { align-items: center; display: inline-flex; gap: 0.55em; margin-inline-end: 0.6em; }
+nav .logo img { height: 2.25em; width: 2.25em; }
+nav .logo strong { color: var(--ink-1); font-size: 1.05em; }
 nav > .tabButton {
     background-color: transparent;
     border: 0;
     border-bottom: 3px solid transparent;
-    border-radius: 0;
+    border-radius: 0.7em;
     color: var(--dashboard-tab-ink);
         fill: var(--dashboard-tab-ink);
     font-family: var(--font-family);
     font-size: var(--font-size);
-    padding: 0.7em 1.4em calc(0.7em - 3px);
+    padding: 0.65em 1.05em;
     text-decoration: none;
     white-space: nowrap;
     }
@@ -39,11 +42,22 @@ body[data-pane="rulesets"] #dashboard-nav .tabButton[data-pane="rulesets"],
 body[data-pane="filters"] #dashboard-nav .tabButton[data-pane="filters"],
 body[data-pane="develop"] #dashboard-nav .tabButton[data-pane="develop"],
 body[data-pane="about"] #dashboard-nav .tabButton[data-pane="about"] {
-    background-color: var(--dashboard-tab-active-surface);
-    border-bottom: 3px solid var(--dashboard-tab-active-ink);
+    background-color: #dff4ec;
+    border-bottom-color: transparent;
     color: var(--dashboard-tab-active-ink);
         fill: var(--dashboard-tab-active-ink);
     }
+body > section { margin: 0.8em auto; max-width: 76em; }
+@media (prefers-color-scheme: dark) {
+    header { background: #102f32; }
+    nav { border-color: #27474b; }
+    body[data-pane] #dashboard-nav .tabButton.selected,
+    body[data-pane="settings"] #dashboard-nav .tabButton[data-pane="settings"],
+    body[data-pane="rulesets"] #dashboard-nav .tabButton[data-pane="rulesets"],
+    body[data-pane="filters"] #dashboard-nav .tabButton[data-pane="filters"],
+    body[data-pane="develop"] #dashboard-nav .tabButton[data-pane="develop"],
+    body[data-pane="about"] #dashboard-nav .tabButton[data-pane="about"] { background: #173f3d; color: #72d4b5; fill: #72d4b5; }
+}
 body:not([data-develop="true"]) #dashboard-nav .tabButton[data-pane="develop"] {
     display: none;
     }

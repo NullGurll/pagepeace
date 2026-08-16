@@ -237,6 +237,63 @@ function changeUserSettings(name, value) {
 
 /******************************************************************************/
 
+const visualPresets = {
+    focus: { uiTheme: 'light', uiAccentCustom: true, uiAccentCustom0: '#2e7d5b', colorBlindFriendly: false },
+    midnight: { uiTheme: 'dark', uiAccentCustom: true, uiAccentCustom0: '#8b7cff', colorBlindFriendly: false },
+    contrast: { uiTheme: 'dark', uiAccentCustom: true, uiAccentCustom0: '#ffd400', colorBlindFriendly: true },
+};
+
+const layoutPresets = {
+    minimal: 0b001,
+    balanced: 0b111,
+    expert: 0b11111,
+};
+
+function reflectSetting(name, value) {
+    const input = qs$(`[data-setting-name="${name}"]`);
+    if ( input === null ) { return; }
+    if ( input.dataset.settingType === 'bool' ) {
+        input.checked = value;
+    } else {
+        input.value = value;
+    }
+}
+
+function showCustomizationStatus(text) {
+    const node = qs$('#customizationStatus');
+    node.textContent = text;
+    self.setTimeout(( ) => {
+        if ( node.textContent === text ) { node.textContent = ''; }
+    }, 2400);
+}
+
+function applyVisualPreset(name) {
+    const preset = visualPresets[name];
+    if ( preset === undefined ) { return; }
+    for ( const [ setting, value ] of Object.entries(preset) ) {
+        reflectSetting(setting, value);
+        changeUserSettings(setting, value);
+    }
+    setTheme(preset.uiTheme, true);
+    setAccentColor(true, preset.uiAccentCustom0, true);
+    qsa$('[data-visual-preset]').forEach(button => {
+        dom.cl.toggle(button, 'active', button.dataset.visualPreset === name);
+    });
+    showCustomizationStatus(`${name[0].toUpperCase()}${name.slice(1)} preset applied.`);
+}
+
+function applyLayoutPreset(name) {
+    const value = layoutPresets[name];
+    if ( value === undefined ) { return; }
+    changeUserSettings('popupPanelSections', value);
+    qsa$('[data-layout-preset]').forEach(button => {
+        dom.cl.toggle(button, 'active', button.dataset.layoutPreset === name);
+    });
+    showCustomizationStatus(`${name[0].toUpperCase()}${name.slice(1)} popup layout applied.`);
+}
+
+/******************************************************************************/
+
 function onValueChanged(ev) {
     const input = ev.target;
     const name = dom.attr(input, 'data-setting-name');
@@ -294,6 +351,12 @@ function onUserSettingsReceived(details) {
     dom.on('#import', 'click', startImportFilePicker);
     dom.on('#reset', 'click', resetUserData);
     dom.on('#restoreFilePicker', 'change', handleImportFilePicker);
+    qsa$('[data-visual-preset]').forEach(button => {
+        dom.on(button, 'click', ( ) => { applyVisualPreset(button.dataset.visualPreset); });
+    });
+    qsa$('[data-layout-preset]').forEach(button => {
+        dom.on(button, 'click', ( ) => { applyLayoutPreset(button.dataset.layoutPreset); });
+    });
 
     synchronizeDOM();
 }

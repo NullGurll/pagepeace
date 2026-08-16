@@ -31,6 +31,27 @@
 <hr>
 <div class="fieldset">
     <div class="fieldset-header" data-i18n="settingsAppearance"></div>
+    <div class="customizationStudio">
+        <div class="customizationTitle">Customization Studio <span>PagePeace addition</span></div>
+        <p class="synopsis">Apply a coordinated look and choose how much information the popup shows. These presets only change interface settings; they never weaken blocking.</p>
+        <div class="customizationRow">
+            <span>Visual preset</span>
+            <div class="presetButtons" data-preset-group="visual">
+                <button type="button" data-visual-preset="focus">Focus</button>
+                <button type="button" data-visual-preset="midnight">Midnight</button>
+                <button type="button" data-visual-preset="contrast">High contrast</button>
+            </div>
+        </div>
+        <div class="customizationRow">
+            <span>Popup layout</span>
+            <div class="presetButtons" data-preset-group="layout">
+                <button type="button" data-layout-preset="minimal">Minimal</button>
+                <button type="button" data-layout-preset="balanced">Balanced</button>
+                <button type="button" data-layout-preset="expert">Expert</button>
+            </div>
+        </div>
+        <div id="customizationStatus" role="status" aria-live="polite"></div>
+    </div>
     <div class="li"><label><span data-i18n="settingsThemeLabel">_</span>&emsp;<select data-setting-name="uiTheme" data-setting-type="value"><option value="auto">Auto<option value="light">Light<option value="dark">Dark</select></label></div>
     <div class="li">
         <label><span class="input checkbox"><input type="checkbox" data-setting-name="uiAccentCustom" data-setting-type="bool"><svg viewBox="0 0 24 24"><path d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg></span><span data-i18n="settingsThemeAccent0Label">_</span></label>&emsp;

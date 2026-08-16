@@ -1,5 +1,5 @@
 {
-  "author": "Raymond Hill & contributors",
+  "author": "Raymond Hill, contributors, and PagePeace contributors",
   "background": {
     "page": "background.html"
   },
@@ -11,12 +11,12 @@
       "32": "img/icon_32.png",
       "64": "img/icon_64.png"
     },
-    "default_title": "uBlock Origin",
+    "default_title": "PagePeace",
     "default_popup": "popup-fenix.html"
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "uBlock0@raymondhill.net",
+      "id": "{fcbb72a0-c49d-4eef-a305-9d2423182fde}",
       "strict_min_version": "115.0",
       "data_collection_permissions": {
         "required": [ "none" ]
@@ -98,15 +98,15 @@
   "default_locale": "en",
   "description": "__MSG_extShortDesc__",
   "icons": {
-    "16": "img/ublock.svg",
-    "32": "img/ublock.svg",
-    "48": "img/ublock.svg",
-    "64": "img/ublock.svg",
-    "96": "img/ublock.svg",
-    "128": "img/ublock.svg"
+    "16": "img/pagepeace.svg",
+    "32": "img/pagepeace.svg",
+    "48": "img/pagepeace.svg",
+    "64": "img/pagepeace.svg",
+    "96": "img/pagepeace.svg",
+    "128": "img/pagepeace.svg"
   },
   "manifest_version": 2,
-  "name": "uBlock Origin",
+  "name": "PagePeace",
   "options_ui": {
     "page": "dashboard.html",
     "open_in_tab": true
@@ -124,11 +124,11 @@
     "webRequestBlocking",
     "<all_urls>"
   ],
-  "short_name": "uBlock₀",
+  "short_name": "PagePeace",
   "sidebar_action": {
     "default_title": "__MSG_statsPageName__",
     "default_panel": "logger-ui.html",
-    "default_icon": "img/ublock.svg",
+    "default_icon": "img/pagepeace.svg",
     "open_at_install": false
   },
   "version": "1.9.15.101",

@@ -7,7 +7,7 @@
     },
     "default_popup": "popup.html"
   },
-  "author": "Raymond Hill",
+  "author": "Raymond Hill, contributors, and PagePeace contributors",
   "background": {
       "service_worker": "/js/background.js",
       "type": "module"
@@ -38,7 +38,7 @@
   },
   "manifest_version": 3,
   "minimum_chrome_version": "122.0",
-  "name": "__MSG_extName__",
+  "name": "PagePeace",
   "options_page": "dashboard.html",
   "permissions": [
     "activeTab",
@@ -50,7 +50,7 @@
     "unlimitedStorage",
     "userScripts"
   ],
-  "short_name": "uBO Lite",
+  "short_name": "PagePeace",
   "storage": {
     "managed_schema": "managed_storage.json"
   },
