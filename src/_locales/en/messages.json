@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message": "PagePeace",
+    "message": "PagePeace Plus",
     "description": "extension name."
   },
   "extShortDesc": {
@@ -8,7 +8,7 @@
     "description": "this will be in the Chrome web store: must be 132 characters or less"
   },
   "dashboardName": {
-    "message": "PagePeace — Dashboard",
+    "message": "PagePeace Plus — Dashboard",
     "description": "English: uBlock₀ — Dashboard"
   },
   "dashboardUnsavedWarning": {
