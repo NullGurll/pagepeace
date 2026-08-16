@@ -261,8 +261,19 @@ body[data-forbid~="dashboard"] .globalTools {
 
 .filteringModeSlider {
     align-self: center;
-    margin: var(--popup-gap) 0;
+    margin: calc(var(--popup-gap) * 0.8) auto 0;
 }
+.easyLevelLabels {
+    color: var(--ink-3);
+    display: grid;
+    font-size: 0.72em;
+    gap: 1px;
+    grid-template-columns: repeat(4, var(--filtering-mode-button-size));
+    line-height: 1.2;
+    margin: 0 auto var(--popup-gap);
+    width: var(--filtering-mode-slider-width);
+}
+.easyLevelLabels span { text-align: center; }
 
 body.needReload #refresh {
     visibility: visible;

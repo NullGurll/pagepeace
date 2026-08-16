@@ -52,7 +52,19 @@ body {
     line-height: 1.5;
     margin: 0;
     padding: 0;
-    }
+}
+
+/* PagePeace readability rhythm shared by every extension screen. */
+body, button, input, select, textarea {
+    line-height: 1.5;
+}
+p, li, label, legend, .li {
+    line-height: 1.55;
+}
+h1, h2, h3, h4 {
+    line-height: 1.25;
+    text-wrap: balance;
+}
 a:not(.fa-icon) {
     color: var(--link-ink);
         fill: var(--link-ink);

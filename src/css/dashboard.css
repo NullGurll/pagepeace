@@ -27,13 +27,14 @@ body.notReady {
     width: 100%;
     z-index: 10;
     }
-#dashboard-nav .logo { align-items: center; display: inline-flex; gap: 0.55em; margin-inline-end: 0.6em; }
+#dashboard-nav .logo { align-items: center; display: inline-flex; flex: 0 0 auto; gap: 0.65em; margin-inline-end: 0.9em; min-width: max-content; padding-inline: 0.2em 0.45em; width: auto; }
 #dashboard-nav .logo img { height: 2.25em; width: 2.25em; }
-#dashboard-nav .logo strong { color: var(--ink-1); font-size: 1.05em; }
+#dashboard-nav .logo strong { color: var(--ink-1); font-size: 1.05em; line-height: 1.2; white-space: nowrap; }
 #dashboard-nav > span {
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
+    scrollbar-width: thin;
     }
 .tabButton {
     background-color: transparent;
@@ -127,6 +128,9 @@ body.noDashboard #dashboard-nav {
 :root.mobile #dashboard-nav .logo {
     display: none;
     }
+@media (max-width: 760px) {
+    #dashboard-nav .logo { display: none; }
+}
 
 /* PagePeace rounded, outline-led interaction language. */
 #dashboard-nav { border-radius: 0 0 16px 16px; }
