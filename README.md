@@ -13,7 +13,7 @@
 <sub>
 <img src="src/img/pagepeace.svg" height="38" width="38">
 </sub>
-PagePeace
+PagePeace — Friendly Content Blocker
 </h1>
 
 <p align="center"><strong>Browse in peace.</strong></p>
